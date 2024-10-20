@@ -36,7 +36,16 @@ const resolvers = {
         return "Error al obtener datos de besoscerezas";
     }
   },
-    service3: () => "Hola, soy servicio3 Cachetada con Trucha !",
+  service3: async () => {
+    try {
+        const response = await axios.get('http://cachetadacontrucha:8000/cachetada');
+        const data = response.data;
+        return `${data.message} Acción: ${data.action}, Poder: ${data.power}`;
+    } catch (err) {
+        console.error("Error al obtener datos de cachetadacontrucha", err);
+        return "Error al obtener datos de cachetadacontrucha";
+    }
+  },
   },
 };
 
